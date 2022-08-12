@@ -88,7 +88,7 @@ function validateFirstStep() {
 
     $(".wizard-card form").validate({
         rules: {
-            firstname: "required",
+            title: "required",
             lastname: "required",
             email: {
                 required: true,
@@ -119,7 +119,7 @@ function validateFirstStep() {
 
         },
         messages: {
-            firstname: "Please enter your First Name",
+            title: "Please enter your First Name",
             lastname: "Please enter your Last Name",
             email: "Please enter a valid email address",
             /*   other posible validation messages

@@ -1,3 +1,4 @@
+/*
 package persistence;
 
 import javax.inject.Inject;
@@ -31,4 +32,4 @@ public class BoardMapperTests {
 		
 	}
 
-}
+}  */
