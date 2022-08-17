@@ -1,9 +1,12 @@
 package mapper;
 
 import java.util.List;
+import java.util.Map;
 
-import domain.CboardVO;
+import org.apache.ibatis.annotations.Param;
+
 import domain.CbCriteria;
+import domain.CboardVO;
 
 public interface CboardMapper {
 	
@@ -23,7 +26,17 @@ public interface CboardMapper {
 	
 	//게시물 삭제
 	public void deleteCboard(int cbno) throws Exception;
-	
+
+	//첨부파일
+	public void addAttach(String fullName)throws Exception;
+	  
+	public List<String> getAttach(Integer cbno)throws Exception;  
+	   
+	public void deleteAttach(Integer cbno)throws Exception;
+	  
+	public void replaceAttach(@Param("fullName")String fullName, @Param("cbno")Integer cbno)throws Exception;
+
+	public void replaceAttach(Map<String, Object> paramMap);
 
 	
 	

@@ -2,8 +2,8 @@ package service;
 
 import java.util.List;
 
-import domain.CboardVO;
 import domain.CbCriteria;
+import domain.CboardVO;
 
 public interface CboardService {
 	
@@ -18,5 +18,14 @@ public interface CboardService {
 	public void modifyCboard(CboardVO cboard) throws Exception;
 	
 	public void deleteCboard(int cbno) throws Exception;
+	
+	
+	public void addAttach(String fullName)throws Exception;
+	  
+	public List<String> getAttach(Integer cbno)throws Exception;  
+	   
+	public void deleteAttach(Integer cbno)throws Exception;
+	  
+	public void replaceAttach(String fullName, Integer cbno)throws Exception;
 
 }

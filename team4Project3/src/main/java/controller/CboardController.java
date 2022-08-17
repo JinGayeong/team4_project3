@@ -1,19 +1,23 @@
 package controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import domain.CboardVO;
 import domain.CbCriteria;
 import domain.CbPageMaker;
+import domain.CboardVO;
 import service.CboardService;
 
 /**
@@ -74,10 +78,11 @@ public class CboardController {
 		model.addAttribute("cboard", cboardService.readCboard(cbno));
 	}
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public String modifyPOST(CboardVO cboard) throws Exception{
+	public String modifyPOST(CboardVO cboard, RedirectAttributes rttr) throws Exception{
 		logger.info("update");
 		
 		cboardService.modifyCboard(cboard);
+		rttr.addFlashAttribute("msg", "SUCCESS");
 		
 		return "redirect:/cboard/list";
 	}
@@ -87,8 +92,16 @@ public class CboardController {
 	public String deleteGET(@RequestParam("cbno") int cbno) throws Exception {
 
 		cboardService.deleteCboard(cbno);
-
+		
 		return "redirect:/cboard/list";
 	}
+	
+	//첨부파일
+	 @RequestMapping("/getAttach/{cbno}")
+	 @ResponseBody
+	 public List<String> getAttach(@PathVariable("cbno") Integer cbno) throws Exception {
+	    
+	   return cboardService.getAttach(cbno);
+	 }  
 
 }
