@@ -105,7 +105,10 @@ img {
                                                 <div class="col-sm-12"> 
                                                     <div class="form-group">
                                                         <label>제목 :</label>
-                                                        <textarea class="form-control" id="ctitle" name="ctitle"></textarea>
+                                                        <!-- <textarea class="form-control" id="ctitle" name="ctitle"></textarea> -->
+                                                        <textarea class="form-control" name="ctitle" onkeypress="TextCount(this,'ctitle');"
+                                                        placeholder="제목을 간략하게 작성해주세요 (20자이내)"></textarea>
+														<span id="ctitle"></span>
                                                     </div> 
                                                 </div> 
                                             </div>
@@ -249,7 +252,7 @@ img {
 				$("form")
 						.submit(
 								function() {
-									if ($("#ctitle").val() == "") {
+									if ($("textarea[Name='ctitle']").val() == "") {
 										alert("제목을 간략히 작성해주세요");
 										return false;
 									}
@@ -354,7 +357,7 @@ $(".fileDrop").on("drop", function(event){
 });
 
 
-// 파일 삭제
+// 첨부파일 삭제
 $(".uploadedList").on("click", ".delbtn", function (event) {
     event.preventDefault();
     var that = $(this);
@@ -371,6 +374,19 @@ $(".uploadedList").on("click", ".delbtn", function (event) {
         }
     });
 });
+
+//제목 글자수 제한
+function TextCount(obj,id){
+	var strValue = obj.value;
+	var strLen = strValue.length+1;
+	var str = "";
+	str += '[' + strLen + '자 / 21]';
+	if(strLen > 20){
+		alert("제목을 간략하게 작성해주세요 (20자이내)");
+		$(obj).val(strValue.substring(0, 19));
+	}
+	$("#"+id).html(str);
+}
 
 </script> 
 

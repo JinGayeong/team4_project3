@@ -36,7 +36,15 @@ public class CboardController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String listCboard(CbCriteria cri, Model model) throws Exception {
 		
-		model.addAttribute("list", cboardService.listCboard(cri));
+		List<CboardVO> list = cboardService.listCboard(cri);
+		/*
+		 * for(CboardVO vo: list) { //System.out.println("/* vo.files="+vo.getFiles());
+		 * }
+		 */
+		
+		model.addAttribute("list", list);
+		
+		//model.addAttribute("list", cboardService.listCboard(cri));
 		
 		CbPageMaker pageMaker = new CbPageMaker();
 		pageMaker.setCri(cri);
@@ -55,8 +63,10 @@ public class CboardController {
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String writePOST(CboardVO cboard, RedirectAttributes rttr) throws Exception {
 		
-		logger.info("write post ...........");
-		logger.info(cboard.toString());
+		//logger.info("write post ...........");
+		//logger.info(cboard.toString());
+		//System.out.println("/**** write posts ....");
+		//System.out.println("cboard.toString()="+cboard.toString());
 		cboardService.writeCboard(cboard);
 		rttr.addFlashAttribute("msg", "SUCCESS");
 		
