@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import domain.CbCriteria;
 import domain.CbPageMaker;
+import domain.CbSearchCriteria;
 import domain.CboardVO;
 import service.CboardService;
 
@@ -34,9 +34,9 @@ public class CboardController {
 
 	//게시물 목록
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String listCboard(CbCriteria cri, Model model) throws Exception {
+	public String listCboard(CbSearchCriteria scri, Model model) throws Exception {
 		
-		List<CboardVO> list = cboardService.listCboard(cri);
+		List<CboardVO> list = cboardService.listCboard(scri);
 		/*
 		 * for(CboardVO vo: list) { //System.out.println("/* vo.files="+vo.getFiles());
 		 * }
@@ -47,8 +47,8 @@ public class CboardController {
 		//model.addAttribute("list", cboardService.listCboard(cri));
 		
 		CbPageMaker pageMaker = new CbPageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(cboardService.listCount());
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(cboardService.listCount(scri));
 		
 		model.addAttribute("pageMaker", pageMaker);
 		

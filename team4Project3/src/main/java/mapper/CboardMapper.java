@@ -6,14 +6,15 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 
 import domain.CbCriteria;
+import domain.CbSearchCriteria;
 import domain.CboardVO;
 
 public interface CboardMapper {
 	
 	 //게시물 목록 
-	public List<CboardVO> listCboard(CbCriteria cri) throws Exception;
+	public List<CboardVO> listCboard(CbSearchCriteria scri) throws Exception;
 	
-	public int listCount() throws Exception;
+	public int listCount(CbSearchCriteria scri) throws Exception;
 	
 	//게시물 작성
 	public void writeCboard(CboardVO cboard) throws Exception;

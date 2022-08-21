@@ -21,22 +21,60 @@
         <div class="properties-area recent-property" style="background-color: #FFF;">
             <div class="container"> 
                 <div class="row  pr0 padding-top-20 properties-page">
-                    <div class="col-md-12 padding-bottom-40 large-search"> 
-                    </div>
-                </div>
+                   	<div class="col-md-12 padding-bottom-40 large-search"> 
+	                    <div class="col-lg-12 col-lg-offset-0 col-md-10 col-md-offset-1 col-sm-12" align="center">
+	                        <div class="search-form" data-wow-delay="0.8s">
+	                            <form role="form" method="get" class=" form-inline">
+	                                <div class="search form-group">
+	                                    <select id="lunchBegins" name="searchType" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="선택">
+                                            <%-- <option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option> --%>
+										    <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
+										    <option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
+										    <%-- <option value="w"<c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option> --%>
+									        <%-- <option value="tc"<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option> --%>
+	                                    </select>
+	                                </div>
+	                                <div class="form-group">
+	                                    <input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="form-control" placeholder="Key word" />
+	                                </div>
+	<!--                                 <div class="form-group">                                     
+	                                    <select id="basic" class="selectpicker show-tick form-control">
+	                                        <option> -Status- </option>
+	                                        <option>Rent </option>
+	                                        <option>Boy</option>
+	                                        <option>used</option>  
+	
+	                                    </select>
+	                                </div> -->
+	                                <button class="search-btn" type="button"><i class="fa fa-search"></i></button>
+	                                <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+								    <script>
+								      $(function(){
+								        $('.search-btn').click(function() {
+								          self.location = "list" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+								        });
+								      });   
+								    </script>	                                
+	                            </form>
+	                        </div>
+	                    </div>
+	                </div>
+		            <!-- </div> -->
+                    <!-- 검색기능 end -->
+                
                     <div class="col-md-12  clear"> 
                         <div class="col-xs-10 page-subheader sorting pl0">
                             <ul class="sort-by-list">
-                                <li class="active">
+                                <li class="">
                                     <a href="javascript:void(0);" class="order_by_date" data-orderby="property_date" data-order="ASC">
                                         최신순 <i class="fa fa-sort-amount-asc"></i>					
                                     </a>
                                 </li>
-                                <li class="">
+<!--                                 <li class="active">
                                     <a href="javascript:void(0);" class="order_by_price" data-orderby="property_price" data-order="DESC">
                                         좋아요순 <i class="fa fa-sort-amount-asc"></i>						
-                                    </a>			<!-- fa fa-sort-numeric-desc -->
-                                </li>
+                                    </a>			fa fa-sort-numeric-desc
+                                </li> -->
                             </ul>
                         </div>
 
@@ -82,26 +120,29 @@
                             <div class="pagination">
 	                             <ul>   
 		  							<c:if test="${pageMaker.prev}">
-										<li><a href="list${pageMaker.makeQuery(pageMaker.startPage - 1) }">&laquo;</a></li>
+										<li><a href="list${pageMaker.makeSearch(pageMaker.startPage - 1) }">&laquo;</a></li>
 									</c:if>
 		
 									<c:forEach begin="${pageMaker.startPage }"
 										end="${pageMaker.endPage }" var="idx">
 										<li
 											<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
-											<a href="list${pageMaker.makeQuery(idx)}">${idx}</a>
+											<a href="list${pageMaker.makeSearch(idx)}">${idx}</a>
 										</li>
 									</c:forEach>
 		
 									<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-										<li><a href="list${pageMaker.makeQuery(pageMaker.endPage +1) }">&raquo;</a></li>
+										<li><a href="list${pageMaker.makeSearch(pageMaker.endPage +1) }">&raquo;</a></li>
 									</c:if>    
 								</ul>
                             </div>
                         </div>                
                     </div>
+                    <!-- 페이징 end -->
                 </div>                
             </div>
+         </div>
+            
 
 <script>
 	var result = '${msg}';

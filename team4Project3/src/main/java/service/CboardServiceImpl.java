@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import domain.CbCriteria;
+import domain.CbSearchCriteria;
 import domain.CboardVO;
 import mapper.CboardMapper;
 
@@ -20,12 +20,11 @@ public class CboardServiceImpl implements CboardService {
 	@Autowired
 	private CboardMapper cboardMapper;
 	
-
 	@Override
 	@Transactional
-	public List<CboardVO> listCboard(CbCriteria cri) throws Exception {
+	public List<CboardVO> listCboard(CbSearchCriteria scri) throws Exception {
 		//return cboardMapper.listCboard(cri);
-		List<CboardVO> list = cboardMapper.listCboard(cri);
+		List<CboardVO> list = cboardMapper.listCboard(scri);
 		for(CboardVO vo : list) {
 			Integer cbno = vo.getCbno();
 			List<String> filesList = cboardMapper.getAttach(cbno);
@@ -37,8 +36,8 @@ public class CboardServiceImpl implements CboardService {
 	}
 	
 	@Override
-	public int listCount() throws Exception {
-		return cboardMapper.listCount();
+	public int listCount(CbSearchCriteria scri) throws Exception {
+		return cboardMapper.listCount(scri);
 	}
 	
 	@Transactional

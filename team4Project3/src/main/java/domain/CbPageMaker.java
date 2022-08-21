@@ -1,5 +1,8 @@
 package domain;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -102,14 +105,25 @@ public class CbPageMaker {
 	            UriComponentsBuilder.newInstance()
 	            .queryParam("page", page)
 	            .queryParam("perPageNum", cri.getPerPageNum())
-						/*
-						 * .queryParam("searchType", ((Criteria)cri).getSearchType())
-						 * .queryParam("keyword", ((Criteria)cri).getKeyword())
-						 */
+				.queryParam("searchType", ((CbSearchCriteria)cri).getSearchType())
+				.queryParam("keyword", ((CbSearchCriteria)cri).getKeyword())
 	            .build();	            
 		
 		return uriComponents.toUriString();
 	}	
+	
+	private String encoding(String keyword) {
+		if(keyword == null || keyword.trim().length() == 0) { 
+			return "";
+		}
+		 
+		try {
+			return URLEncoder.encode(keyword, "UTF-8");
+		} catch(UnsupportedEncodingException e) { 
+			return ""; 
+		}
+	}
+	
 	
 	@Override
 	public String toString() {

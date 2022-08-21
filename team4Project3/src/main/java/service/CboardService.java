@@ -2,7 +2,7 @@ package service;
 
 import java.util.List;
 
-import domain.CbCriteria;
+import domain.CbSearchCriteria;
 import domain.CboardVO;
 
 public interface CboardService {
@@ -10,10 +10,10 @@ public interface CboardService {
 	public void writeCboard(CboardVO cboard) throws Exception;
 	
 	public CboardVO readCboard(Integer cbno) throws Exception;
+
+	public List<CboardVO> listCboard(CbSearchCriteria scri) throws Exception;
 	
-	public List<CboardVO> listCboard(CbCriteria cri) throws Exception;
-	
-	public int listCount() throws Exception;
+	public int listCount(CbSearchCriteria scri) throws Exception;
 	
 	public void modifyCboard(CboardVO cboard) throws Exception;
 	
