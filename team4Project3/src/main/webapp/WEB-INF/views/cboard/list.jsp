@@ -92,8 +92,8 @@
                                     <div class="item-thumb">
                                         <a href="read?cbno=${cboard.cbno}">
                                          <c:set var="data" value="${cboard.files[0]}" />
-                                       <%-- <img style="height: 240px;" src="/displayFile?fileName=${fn:substring(data, 0, 12)}${fn:substring(data, 14, 100)}"  --%>
-                                       <img style="height: 240px;" src="/upload${fn:substring(data, 0, 12)}${fn:substring(data, 14, 100)}"  
+                                       <img style="height: 240px;" src="/displayFile?fileName=${fn:substring(data, 0, 12)}${fn:substring(data, 14, 100)}"
+                                       <%-- <img style="height: 240px;" src="/upload${fn:substring(data, 0, 12)}${fn:substring(data, 14, 100)}"   --%>
                                         onerror="this.src='/resources/assets/img/demo/default.jpg'"/></a>
                                     </div>
 

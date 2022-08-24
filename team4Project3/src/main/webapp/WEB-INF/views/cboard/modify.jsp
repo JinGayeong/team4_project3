@@ -193,7 +193,7 @@ img {
                                     <!-- End step 1 -->
 
                                     <div class="tab-pane" id="step2">
-                                      <div style="margin-bottom: 20px;">>                                      
+                                      <div style="margin-bottom: 20px;">                                      
                                         <p align="center"><span class="info-text" style="font-size: 20px;">시공사진 이미지 등록</span>
                                         <span style="font-size: 16px;">(글 수정시 이미지를 다시 등록해주세요)</span></p>
                                       </div>  

@@ -97,6 +97,11 @@ public class CbUploadController {
     
     logger.info("FILE NAME: " + fileName);
     
+    if(fileName.isEmpty()) {
+    	return entity;
+    }
+    
+    
     try{
       
       String formatName = fileName.substring(fileName.lastIndexOf(".")+1);
@@ -105,7 +110,11 @@ public class CbUploadController {
       
       HttpHeaders headers = new HttpHeaders();
       
+      String uploadFileName = uploadPath+fileName;
+      System.out.println("/*** uploadFileNae="+uploadFileName);
+      
       in = new FileInputStream(uploadPath+fileName);
+      //in = new FileInputStream(uploadPath+fileName);
       
       if(mType != null){
         headers.setContentType(mType);
